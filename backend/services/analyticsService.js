@@ -13,7 +13,14 @@ const getDashboardData = async () => {
     try {
         const results = await PythonShell.run("analyze.py", options);
 
-        return JSON.parse(results[0]);
+        console.log(results);
+
+        const output = results.join("\n");
+
+        console.log(output);
+
+        return JSON.parse(output);
+
     } catch (error) {
         throw error;
     }
