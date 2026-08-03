@@ -138,8 +138,5 @@ Dashboard includes:
 
 ## 👨‍💻 Author
 
-Sahil
+Sahil Sarna
 
-B.Tech Computer Science Engineering
-
-Punjab Engineering College (PEC), Chandigarh
