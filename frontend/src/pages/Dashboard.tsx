@@ -39,64 +39,9 @@ export default function DashboardPage() {
   }
 
   const handleExport = () => {
-    if (!dashboard) {
-      return
-    }
-
-    const rows: string[][] = []
-    rows.push(['Section', 'Metric', 'Value'])
-
-    rows.push(['KPI', 'Total Sales', dashboard.kpis.totalSales.toString()])
-    rows.push(['KPI', 'Total Profit', dashboard.kpis.totalProfit.toString()])
-    rows.push(['KPI', 'Total Quantity', dashboard.kpis.totalQuantity.toString()])
-    rows.push(['KPI', 'Average Discount', dashboard.kpis.averageDiscount.toString()])
-    rows.push(['KPI', 'Number of States', dashboard.kpis.numberOfStates.toString()])
-
-    for (const item of dashboard.charts.salesByCategory) {
-      rows.push(['Sales by Category', item.label, item.value.toString()])
-    }
-
-    for (const item of dashboard.charts.profitByCategory) {
-      rows.push(['Profit by Category', item.label, item.value.toString()])
-    }
-
-    for (const item of dashboard.charts.salesByRegion) {
-      rows.push(['Sales by Region', item.label, item.value.toString()])
-    }
-
-    for (const item of dashboard.charts.profitByRegion) {
-      rows.push(['Profit by Region', item.label, item.value.toString()])
-    }
-
-    for (const item of dashboard.charts.salesBySegment) {
-      rows.push(['Sales by Segment', item.label, item.value.toString()])
-    }
-
-    for (const item of dashboard.charts.topStates) {
-      rows.push(['Top States', item.label, item.value.toString()])
-    }
-
-    for (const insight of dashboard.insights) {
-      rows.push(['Key Insights', '', insight])
-    }
-
-    const escapeCsvCell = (value: string) => {
-      const needsQuotes = /[",\n]/.test(value)
-      const normalizedValue = value.replace(/"/g, '""')
-      return needsQuotes ? `"${normalizedValue}"` : normalizedValue
-    }
-
-    const csvContent = rows.map((row) => row.map(escapeCsvCell).join(',')).join('\n')
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = 'retail_dashboard_report.csv'
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-    URL.revokeObjectURL(url)
-  }
+    console.log("Export button clicked");
+    window.location.assign("http://localhost:5000/api/export");
+    };
 
   useEffect(() => {
     void loadDashboard()
